@@ -1,12 +1,13 @@
-package guru.springframework.sfgpetclinic;
+package sfgpetclinic;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.sftpetclinic.SfgPetClinicApplication;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = SfgPetClinicApplication.class)
 public class SfgPetClinicApplicationTests {
 
     @Test
