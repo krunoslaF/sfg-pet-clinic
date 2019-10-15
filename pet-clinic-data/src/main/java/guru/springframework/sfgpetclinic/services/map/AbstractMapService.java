@@ -1,33 +1,50 @@
 package guru.springframework.sfgpetclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
-public abstract class AbstractMapService<T, ID> {
+import guru.springframework.sfgpetclinic.model.BaseEntity;
+import lombok.extern.slf4j.Slf4j;
 
-    protected Map<ID, T> map = new HashMap<>();
+import java.util.*;
+
+@Slf4j
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
+
+    protected Map<Long, T> map = new HashMap<>();
 
 
     Set<T> findAll() {
         return new HashSet<>(map.values());
     }
 
-    T findById(ID id) {
+    T findById(Long id) {
         return map.get(id);
     }
 
-    T save(ID id, T object) {
-        map.put(id, object);
-        return object;
+    T save(T object) {
+        if (object != null){
+            Long id = getNextId();
+            object.setId(id);
+            map.put(id, object);
+            return object;
+        } else throw new RuntimeException("Object cannot be null");
     }
 
-    void deleteById(ID id) {
+    void deleteById(Long id) {
         map.remove(id);
     }
 
     void delete(T object){
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
+    }
+
+    private Long getNextId() {
+        Long toReturn = null;
+        try {
+            toReturn = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            toReturn = 1L;
+        }
+        log.info("Dodajem objektu ID: " + toReturn);
+        return toReturn;
     }
 }
