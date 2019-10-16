@@ -9,6 +9,11 @@ import java.util.Set;
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
+    public void deleteAll() {
+        super.deleteAll();
+    }
+
+    @Override
     public Set<Vet> findAll() {
         return super.findAll();
     }

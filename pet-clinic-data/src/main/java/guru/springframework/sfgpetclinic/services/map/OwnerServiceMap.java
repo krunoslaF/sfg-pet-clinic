@@ -4,10 +4,17 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+
+    @Override
+    public void deleteAll() {
+
+    }
+
     @Override
     public Owner save(Owner object) {
         return super.save(object);
@@ -15,7 +22,10 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner findByLastName(String lastName) {
-        return null;
+        Set<Owner> ownerSet = super.findAll();
+        Optional<Owner> ownerOptional = ownerSet.stream()
+                .findFirst().filter(item -> item.getLastName().equalsIgnoreCase(lastName));
+        return ownerOptional.orElse(new Owner());
     }
 
     @Override

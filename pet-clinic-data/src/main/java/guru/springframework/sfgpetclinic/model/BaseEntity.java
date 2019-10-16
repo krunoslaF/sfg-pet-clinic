@@ -1,10 +1,13 @@
 package guru.springframework.sfgpetclinic.model;
 
+import lombok.ToString;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+@ToString
 public class BaseEntity implements Serializable {
 
     @Id

@@ -2,7 +2,7 @@ package guru.springframework.sfgpetclinic.model;
 
 import java.io.Serializable;
 
-public class PetType implements Serializable {
+public class PetType extends BaseEntity implements Serializable {
 
     private String name;
 
@@ -11,6 +11,10 @@ public class PetType implements Serializable {
     }
 
     public void setName(String name) {
+        this.name = name;
+    }
+
+    public PetType(String name) {
         this.name = name;
     }
 }
