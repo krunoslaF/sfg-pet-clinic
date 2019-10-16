@@ -2,6 +2,7 @@ package guru.springframework.sfgpetclinic.services.map;
 
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
  * @author kguldan
  */
 @Service
+@Slf4j
 public class PetTypeServiceMap extends AbstractMapService<PetType,Long> implements PetTypeService {
     @Override
     public Set<PetType> findAll() {
@@ -28,6 +30,7 @@ public class PetTypeServiceMap extends AbstractMapService<PetType,Long> implemen
 
     @Override
     public PetType save(PetType object) {
+        log.info("Dodajem petType {}", object.toString());
         return super.save(object);
     }
 

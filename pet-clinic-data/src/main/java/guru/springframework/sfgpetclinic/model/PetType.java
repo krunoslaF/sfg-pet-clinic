@@ -17,4 +17,12 @@ public class PetType extends BaseEntity implements Serializable {
     public PetType(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "PetType{" +
+                "name='" + name + '\'' +
+                super.toString() +
+                '}';
+    }
 }
