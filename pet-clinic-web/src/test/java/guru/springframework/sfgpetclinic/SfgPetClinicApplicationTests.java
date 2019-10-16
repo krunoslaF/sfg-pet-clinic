@@ -24,18 +24,10 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest(classes = SfgPetClinicApplication.class)
 public class SfgPetClinicApplicationTests {
 
-    @Autowired
-    private OwnerService ownerService;
-
-    @Autowired
-    private VetService vetService;
+    @Autowired private OwnerService ownerService;
+    @Autowired private VetService vetService;
 
     @Test
-    public void contextLoads() {
-    }
-
-    @Test
-    @DirtiesContext
     public void saveOwners() {
 
         ownerService.deleteAll();
@@ -44,19 +36,23 @@ public class SfgPetClinicApplicationTests {
         Owner owner2 = new Owner();
         owner2.setFirstName("Gail");
         owner2.setLastName("Deverse");
+        owner2.setAddress("Šetalište Oktobarske revolucije");
+        owner2.setTelephone("333222444");
+        owner2.setCity("Pogana Vlaka");
 
         ownerService.save(owner2);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Matt");
         owner1.setLastName("Le Tissier");
+        owner1.setCity("Southampton");
+        owner1.setTelephone("NONE");
+        owner1.setAddress("Best Footballers Blvd 1");
 
         ownerService.save(owner1);
 
+
         Set<Owner> ownerSet = ownerService.findAll();
-
-
-
         assertEquals(2, ownerSet.size());
     }
 

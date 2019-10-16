@@ -13,7 +13,7 @@ public class Vet extends Person {
     @Override
     public String toString() {
         return "Vet{" +
-                "specialties=" + specialties +
+                "specialties=" + specialties + ", " +
                 super.toString() +
                 '}';
     }

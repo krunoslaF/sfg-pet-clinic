@@ -25,6 +25,8 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public void deleteAll() {
 
+        super.deleteAll();
+
     }
 
     @Override
@@ -32,7 +34,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
         if (object != null) {
 
-            if ((object.getPets() != null) && (!object.getPets().isEmpty())) {
                 object.getPets().stream()
                         .forEach(pet -> {
                             if (pet.getPetType() != null){
@@ -45,7 +46,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                             } else throw new RuntimeException("PetType is mandatory");
 
                             });
-            }
 
             return super.save(object);
 
